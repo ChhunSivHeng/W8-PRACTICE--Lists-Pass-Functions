@@ -9,7 +9,7 @@ class Joke {
     this.isFavorite = false,
   });
 }
-
+//all this jokes data are generate my Ai
 final List<Joke> jokes = [
   Joke(
     title: "Why did the chicken cross the road?",

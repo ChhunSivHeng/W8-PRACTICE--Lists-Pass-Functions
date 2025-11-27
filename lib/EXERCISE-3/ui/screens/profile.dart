@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../data/profile_data.dart';
 
 import '../theme/theme.dart';
 
@@ -18,43 +19,40 @@ class ProfileApp extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(height: 40),
-            const CircleAvatar(
-              radius: 60,
-              backgroundImage: AssetImage(
-                  'assets/images/w8/aang.png'), 
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Ronan OGOR',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
+        
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 40),
+              CircleAvatar(
+                radius: 60,
+                backgroundImage: AssetImage(
+                    ronanProfile.avatarUrl),
               ),
-            ),
-            const Text(
-              'Flutter Developer',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
+              const SizedBox(height: 20),
+              Text(
+                ronanProfile.name,
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primary,
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            const ProfileTile(
-              icon: Icons.phone,
-              title: "Phone Number",
-              data: "+123 456 7890",
-            ),
-             const ProfileTile(
-              icon: Icons.location_on,
-              title: "Address",
-              data: "Cambodia",
-            ),
-          ],
+              Text(
+                ronanProfile.position,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey,
+                ),
+              ),
+              ...ronanProfile.tiles.map((Tile) => ProfileTile(
+                icon: Tile.icon,
+                title: Tile.title,
+                data: Tile.value,
+              )).toList(),
+            ],
+          ),
         ),
       ),
     );
