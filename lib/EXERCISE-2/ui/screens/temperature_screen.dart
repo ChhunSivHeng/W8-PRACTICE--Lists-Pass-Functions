@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TemperatureScreen extends StatefulWidget {
-  const TemperatureScreen({super.key});
-
-  @override
-  State<TemperatureScreen> createState() => _TemperatureScreenState();
-}
-
-class _TemperatureScreenState extends State<TemperatureScreen> {
-  final TextEditingController _controller = TextEditingController();
-  double? _fahrenheit;
+class TemperatureScreen extends StatelessWidget {
+  TemperatureScreen({super.key});
 
   final InputDecoration inputDecoration = InputDecoration(
     enabledBorder: OutlineInputBorder(
@@ -19,18 +11,6 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
     hintText: 'Enter a temperature',
     hintStyle: const TextStyle(color: Colors.white),
   );
-
-  void _convert() {
-    final text = _controller.text;
-    final celsius = double.tryParse(text);
-    setState(() {
-      if (celsius != null) {
-        _fahrenheit = celsius * 9 / 5 + 32;
-      } else {
-        _fahrenheit = null;
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +36,8 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
             const Text("Temperature in Degrees:"),
             const SizedBox(height: 10),
             TextField(
-              controller: _controller,
               decoration: inputDecoration,
               style: const TextStyle(color: Colors.white),
-              keyboardType: TextInputType.number,
-              onChanged: (_) => _convert(),
             ),
             const SizedBox(height: 30),
             const Text("Temperature in Fahrenheit:"),
@@ -71,10 +48,7 @@ class _TemperatureScreenState extends State<TemperatureScreen> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Text(
-                _fahrenheit != null ? _fahrenheit!.toStringAsFixed(2) : 'Invalid input',
-                style: const TextStyle(color: Colors.black, fontSize: 20),
-              ),
+              child: const Text('test'),
             ),
           ],
         ),
